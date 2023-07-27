@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CRUD</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Start App -->
+  <div id="app">
+    <div class="container">
+      <div class="popup__shadow" v-if='isOpen' v-on:click.self="setShowPopup(false)">
+        <div class="popup" v-if='isOpen'>
+          <h2>Create new user</h2>
+          <form
+          class="user-form"
+          @submit="checkForm"
+          >
+            <div class="form-group">
+              <label for="user">Last name</label>
+              <input
+              type="text"
+              id="lastName"
+              class="user-form__input"
+              v-model.trim="lastName"
+              >
+            </div>
+            <div class="form-group">
+              <label for="user">First name</label>
+              <input
+              type="text"
+              id="firstName"
+              class="user-form__input"
+              v-model.trim="firstName"
+              >
+            </div>
+            <div class="form-group">
+              <label for="user">Email</label>
+              <input
+              type="email"
+              id="email"
+              class="user-form__input"
+              v-model.trim="email"
+              >
+            </div>
+            <div class="form-group">
+              <label for="user">Site</label>
+              <input
+              type="url"
+              id="site"
+              class="user-form__input"
+              v-model.trim="site"
+              >
+            </div>
+            <div class="form-group">
+              <label for="user">Avatar</label>
+              <input
+              type="url"
+              id="avatar"
+              class="user-form__input"
+              v-model.trim="avatar"
+              >
+            </div>
+            <div class="form-group">
+              <label for="user">Birthday</label>
+              <input
+              type="date"
+              id="birthday"
+              class="user-form__input"
+              v-model.trim="birthday"
+              >
+            </div>
+            <div class="form__buttons">
+              <button type="button" v-on:click='addUser()'>Ok</button>
+              <button v-on:click='setShowPopup(false)'>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <button class="btn" v-on:click='setShowPopup(true)'>+</button>
+      <ul class="user-list">
+
+        <li>
+          <div class="name">Name</div>
+          <div class="email">Email</div>
+          <div class="site">Site</div>
+          <div class="avatar">Avatar</div>
+          <div class="birthday">Birthday</div>
+          <div class="user-list__buttons"></div>
+        </li>
+
+        <li
+          v-for="(user, index) in userList"
+          :key="user.id"
+        >
+          <div class="name">{{ user.firstName+' '+user.lastName }}</div>
+          <div class="email">{{ user.email }}</div>
+          <div class="site"><a v-bind:href='user.site' target="_blank">{{ user.site }}</a></div>
+          <div class="avatar">
+            <img v-bind:src='user.avatar' alt="avatar">
+          </div>
+          <div class="birthday">{{ user.birthday }}</div>
+          <div class="user-list__buttons">
+            <button class="btn-edit" v-on:click="editUser(index, 'need')">Edit</button>
+          <button class="btn-remove" v-on:click="removeUser(index)">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- End App -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
