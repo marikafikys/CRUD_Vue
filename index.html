@@ -14,13 +14,19 @@
   <!-- Start App -->
   <div id="app">
     <div class="container">
-      <div class="popup__shadow" v-if='isOpen' v-on:click.self="setShowPopup(false)">
+      <div class="popup__shadow" v-if='isOpen' v-on:click.self="setShowPopup(false, 'add')">
         <div class="popup" v-if='isOpen'>
-          <h2>Create new user</h2>
+          <h2>{{ popupTitle }}</h2>
           <form
           class="user-form"
-          @submit="checkForm"
+          @submit="checkForm()"
           >
+            <p v-if="errors.length">
+              <b>Пожалуйста исправьте указанные ошибки:</b>
+              <ul>
+                <li v-for="error in errors">{{ error }}</li>
+              </ul>
+            </p>
             <div class="form-group">
               <label for="user">Last name</label>
               <input
@@ -77,13 +83,13 @@
             </div>
             <div class="form__buttons">
               <button type="button" v-on:click='addUser()'>Ok</button>
-              <button v-on:click='setShowPopup(false)'>Cancel</button>
+              <button v-on:click="setShowPopup(false, 'add')">Cancel</button>
             </div>
           </form>
         </div>
       </div>
 
-      <button class="btn" v-on:click='setShowPopup(true)'>+</button>
+      <button class="btn" v-on:click="setShowPopup(true, 'add')">+</button>
       <ul class="user-list">
 
         <li>
@@ -107,7 +113,7 @@
           </div>
           <div class="birthday">{{ user.birthday }}</div>
           <div class="user-list__buttons">
-            <button class="btn-edit" v-on:click="editUser(index, 'need')">Edit</button>
+            <button class="btn-edit" v-on:click="editUser(index)">Edit</button>
           <button class="btn-remove" v-on:click="removeUser(index)">Delete</button>
           </div>
         </li>
