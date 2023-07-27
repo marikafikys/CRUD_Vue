@@ -37,7 +37,7 @@ Vue.createApp({
         this.errors.push('Enter your last name');
       }
       if (!this.validEmail(this.email) && this.email.length !== 0) {
-        this.errors.push('Укажите корректный адрес электронной почты.');
+        this.errors.push('Enter a valid email address');
       }
       if (!this.errors.length) {
         return true;

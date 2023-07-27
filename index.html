@@ -22,7 +22,7 @@
           @submit="checkForm()"
           >
             <p v-if="errors.length">
-              <b>Пожалуйста исправьте указанные ошибки:</b>
+              <b>Please fix these errors:</b>
               <ul>
                 <li v-for="error in errors">{{ error }}</li>
               </ul>
@@ -88,7 +88,6 @@
           </form>
         </div>
       </div>
-
       <button class="btn" v-on:click="setShowPopup(true, 'add')">+</button>
       <ul class="user-list">
         <li>
