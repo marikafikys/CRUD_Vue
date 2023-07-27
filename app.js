@@ -13,6 +13,11 @@ Vue.createApp({
       userList: [],
     };
   },
+  mounted() {
+    if (localStorage.getItem('userList')) {
+      this.userList = JSON.parse(localStorage.getItem("userList"));
+    }
+  },
   methods: {
     // showPopup (isOpen = false) {
     //   console.log('show', isOpen);
@@ -35,12 +40,16 @@ Vue.createApp({
         email: this.email,
         site: this.site,
         avatar: this.avatar,
-        birthday: this.birthday,
+        birthday: this.birthday.split('-').reverse().join('.'),
         id: Math.round(Math.random()*1000)
       };
       this.userList.push(this.user);
       this.isOpen = false;
-      // this.valueInput = '';
+      this.saveUsers();
+    },
+    saveUsers() {
+      const parsed = JSON.stringify(this.userList);
+      localStorage.setItem('userList', parsed);
     },
     // doCheck (index, type) {
     //   if(type === 'need') {
@@ -52,11 +61,11 @@ Vue.createApp({
     //     this.needDoList.push(...noCompleteMask);
     //   }
     // },
-    removeUser (index, type) {
-
-    },
     removeUser (index) {
-      this.userList.splice(index, 1);
+      if (confirm("Are you sure?")) {
+        this.userList.splice(index, 1);
+        this.saveUsers();
+      }
     }
   }
 }
