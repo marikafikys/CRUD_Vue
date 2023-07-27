@@ -91,7 +91,6 @@
 
       <button class="btn" v-on:click="setShowPopup(true, 'add')">+</button>
       <ul class="user-list">
-
         <li>
           <div class="name">Name</div>
           <div class="email">Email</div>
@@ -100,7 +99,6 @@
           <div class="birthday">Birthday</div>
           <div class="user-list__buttons"></div>
         </li>
-
         <li
           v-for="(user, index) in userList"
           :key="user.id"

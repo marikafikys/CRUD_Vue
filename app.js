@@ -42,7 +42,6 @@ Vue.createApp({
       if (!this.errors.length) {
         return true;
       }
-      // e.preventDefault();
     },
     validEmail (email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -68,23 +67,23 @@ Vue.createApp({
       const parsed = JSON.stringify(this.userList);
       localStorage.setItem('userList', parsed);
     },
-    editUser(index) {
-      let currentUser = this.userList[index];
-      this.user = currentUser;
-      this.user.lastName = currentUser.lastName;
-      console.log(currentUser.lastName);
-      console.log(this.user.lastName);
-      this.setShowPopup(true, 'edit');
-      // this.user = {
-      //   lastName: currentUser.lastName,
-      //   firstName: currentUser.firstName,
-      //   email: currentUser.email,
-      //   site: currentUser.site,
-      //   avatar: currentUser.avatar,
-      //   birthday: currentUser.birthday,
-      //   id: currentUser.id
-      // };
-    },
+    // editUser(index) {
+    //   let currentUser = this.userList[index];
+    //   this.user = currentUser;
+    //   this.user.lastName = currentUser.lastName;
+    //   console.log(currentUser.lastName);
+    //   console.log(this.user.lastName);
+    //   this.setShowPopup(true, 'edit');
+    //   this.user = {
+    //     lastName: currentUser.lastName,
+    //     firstName: currentUser.firstName,
+    //     email: currentUser.email,
+    //     site: currentUser.site,
+    //     avatar: currentUser.avatar,
+    //     birthday: currentUser.birthday,
+    //     id: currentUser.id
+    //   };
+    // },
     removeUser (index) {
       if (confirm("Are you sure?")) {
         this.userList.splice(index, 1);
