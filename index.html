@@ -106,7 +106,7 @@
           <div class="email">{{ user.email }}</div>
           <div class="site"><a v-bind:href='user.site' target="_blank">{{ user.site }}</a></div>
           <div class="avatar">
-            <img v-bind:src='user.avatar' alt="avatar">
+            <img v-if="user.avatar.length" v-bind:src='user.avatar' alt="avatar">
           </div>
           <div class="birthday">{{ user.birthday }}</div>
           <div class="user-list__buttons">

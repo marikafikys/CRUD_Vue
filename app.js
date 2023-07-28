@@ -10,6 +10,7 @@ Vue.createApp({
       site: '',
       avatar: '',
       birthday: '',
+      id: '',
       user: {},
       userList: [],
     };
@@ -56,34 +57,48 @@ Vue.createApp({
           site: this.site,
           avatar: this.avatar,
           birthday: this.birthday.split('-').reverse().join('.'),
-          id: Math.round(Math.random()*1000)
+          id: this.id || Math.round(Math.random()*1000)
         };
+        // if (!this.user.id) {
+        //   this.user.id = Math.round(Math.random()*1000)
+        // }
         this.userList.push(this.user);
         this.isOpen = false;
         this.saveUsers();
+        this.lastName = '';
+        this.firstName = '';
+        this.email = '';
+        this.site = '';
+        this.avatar = '';
+        this.birthday = '';
       }
     },
     saveUsers() {
       const parsed = JSON.stringify(this.userList);
       localStorage.setItem('userList', parsed);
     },
-    // editUser(index) {
-    //   let currentUser = this.userList[index];
-    //   this.user = currentUser;
-    //   this.user.lastName = currentUser.lastName;
-    //   console.log(currentUser.lastName);
-    //   console.log(this.user.lastName);
-    //   this.setShowPopup(true, 'edit');
-    //   this.user = {
-    //     lastName: currentUser.lastName,
-    //     firstName: currentUser.firstName,
-    //     email: currentUser.email,
-    //     site: currentUser.site,
-    //     avatar: currentUser.avatar,
-    //     birthday: currentUser.birthday,
-    //     id: currentUser.id
-    //   };
-    // },
+    editUser(index) {
+      let currentUser = this.userList[index];
+      this.user = currentUser;
+      this.lastName = currentUser.lastName;
+      this.firstName = currentUser.firstName;
+      this.email = currentUser.email;
+      this.site = currentUser.site;
+      this.avatar = currentUser.avatar;
+      this.birthday = currentUser.birthday;
+      this.id = currentUser.id;
+      this.setShowPopup(true, 'edit');
+      this.userList.splice(index, 1);
+      this.user = {
+        lastName: currentUser.lastName,
+        firstName: currentUser.firstName,
+        email: currentUser.email,
+        site: currentUser.site,
+        avatar: currentUser.avatar,
+        birthday: currentUser.birthday,
+        id: currentUser.id
+      }
+    },
     removeUser (index) {
       if (confirm("Are you sure?")) {
         this.userList.splice(index, 1);
