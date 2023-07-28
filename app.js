@@ -59,9 +59,6 @@ Vue.createApp({
           birthday: this.birthday.split('-').reverse().join('.'),
           id: this.id || Math.round(Math.random()*1000)
         };
-        // if (!this.user.id) {
-        //   this.user.id = Math.round(Math.random()*1000)
-        // }
         this.userList.push(this.user);
         this.isOpen = false;
         this.saveUsers();

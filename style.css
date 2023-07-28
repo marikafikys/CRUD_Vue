@@ -97,7 +97,7 @@ h2 {
   border-radius: 0;
   box-sizing: border-box;
   outline: none;
-  /* transition: 0.2s border; */
+  transition: 0.2s border;
 }
 
 .user-form__input:focus {
@@ -115,7 +115,7 @@ h2 {
   padding: 10px 15px;
   height: 40px;
   outline: none;
-  /* transition: 0.2s; */
+  transition: 0.2s;
   position: relative;
   top: -15px;
   z-index: 0;
@@ -166,7 +166,7 @@ h2 {
     color: #000;
     padding: 5px 10px;
     outline: none;
-    /* transition: 0.2s; */
+    transition: 0.2s;
 }
 
 .btn-edit {
